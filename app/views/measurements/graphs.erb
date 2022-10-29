@@ -1,0 +1,174 @@
+    <script>
+    var sugarChartData = {
+      labels : <%=@sugar_values[0].to_json%>,
+      datasets : [
+        {
+          label: "Blood sugar level",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : <%=@sugar_values[1].to_json%> 
+        }
+      ]
+    }
+
+    var weightChartData = {
+      labels : <%=@weight_values[0].to_json%>,
+      datasets : [
+        {
+          label: "My First dataset",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : <%=@weight_values[1].to_json%> 
+        }
+      ]
+    }
+
+
+    var pressureChartData = {
+      labels : <%=@pressure_values[0].to_json%>,
+      datasets : [
+        {
+          label: "Systolic",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : <%=@pressure_values[1].to_json%>
+        },
+        {
+          label: "Diastolic",
+          fillColor : "rgba(151,187,205,0.2)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(151,187,205,1)",
+          data : <%=@pressure_values[2].to_json%>
+        }
+      ]
+    }
+
+
+   
+
+
+  window.onload = function(){
+    var ctx0 = document.getElementById("blood_sugar").getContext("2d");
+    ctx0.canvas.width = 200;
+    ctx0.canvas.height = 200;
+    window.myLine = new Chart(ctx0).Line(sugarChartData, {
+      responsive: true
+    });
+
+    var ctx1= document.getElementById("weight").getContext("2d");
+    ctx1.canvas.width = 200;
+    ctx1.canvas.height = 200;
+    window.myLine = new Chart(ctx1).Line(weightChartData, {
+      responsive: true
+    });
+
+    var ctx2= document.getElementById("blood_pressure").getContext("2d");
+    ctx2.canvas.width = 200;
+    ctx2.canvas.height = 200;
+    window.myLine = new Chart(ctx2).Line(pressureChartData, {
+      responsive: true
+    });
+
+    
+  }
+  </script>
+
+
+
+
+   
+<div class="jumbotron" style="margin: 10% 5%; background-color: transparent;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class = "container well" height="100%">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4>Blood Pressure</h4>
+              </div>
+              <div class="panel-body">
+                <% if current_user %>
+                  <ul class="list-group">
+                    <li class="list-group-item">Average Systolic Pressure: <span class="text-info"><%= current_user.patient_measurements.average(:systolic_pressure).to_f.round(2) %> mmHg</span></li>
+                    <li class="list-group-item">Average Diastolic Pressure: <span class="text-info"><%= current_user.patient_measurements.average(:diastolic_pressure).to_f.round(2) %> mmHg</span></li>
+                    <li class="list-group-item">Highest Systolic Pressure Reading: <span class="text-info"><%= current_user.patient_measurements.maximum(:systolic_pressure).to_f.round(2)%> mmHg</span></li>
+                    <li class="list-group-item">Highest Diastolic Pressure Reading: <span class="text-info"><%= current_user.patient_measurements.maximum(:diastolic_pressure).to_f.round(2)%> mmHg</span></li>
+                    <li class="list-group-item">Lowest Systolic Reading: <span class="text-info"><%= current_user.patient_measurements.minimum(:systolic_pressure).to_f.round(2)%> mmHg</span></li>
+                    <li class="list-group-item">Lowest Diastolic Reading: <span class="text-info"><%= current_user.patient_measurements.minimum(:diastolic_pressure).to_f.round(2)%> mmHg</span></li>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <canvas id="blood_pressure" style="border: 1px solid black"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+        <div class = "container well" height="100%">
+          <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4>Blood sugar level</h4>
+                </div>
+                <div class="panel-body">
+                  <% if current_user %>
+                    <ul class="list-group">
+                      <li class="list-group-item">Average Blood Sugar Level: <span class="text-info"><%= current_user.patient_measurements.average(:blood_sugar_level).to_f.round(2) %> mmol/L</span></li>
+                      <li class="list-group-item">Highest Blood Sugar Reading: <span class="text-info"><%= current_user.patient_measurements.maximum(:blood_sugar_level).to_f.round(2)%> mmol/L</span></li>
+                      <li class="list-group-item">Lowest Blood Sugar Reading: <span class="text-info"><%= current_user.patient_measurements.minimum(:blood_sugar_level).to_f.round(2)%> mmol/L</span></li>
+                    </ul>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+            <div class="col-md-6">
+            <canvas id="blood_sugar" style="border: 1px solid black"></canvas>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+        <div class = "container well" height="100%">
+          <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4>Weight</h4>
+                </div>
+                <div class="panel-body">
+                  <% if current_user %>
+                    <ul class="list-group">
+                      <li class="list-group-item">Average Weight: <span class="text-info"><%= current_user.patient_measurements.average(:weight).to_f.round(2) %> Kg</span></li>
+                      <li class="list-group-item">Highest Weight Reading: <span class="text-info"><%= current_user.patient_measurements.maximum(:weight).to_f.round(2)%> Kg</span></li>
+                      <li class="list-group-item">Lowest Weight Reading: <span class="text-info"><%= current_user.patient_measurements.minimum(:weight).to_f.round(2)%> Kg</span></li>
+                    </ul>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+            <div class="col-md-6">
+            <canvas id="weight" style="border: 1px solid black"></canvas>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

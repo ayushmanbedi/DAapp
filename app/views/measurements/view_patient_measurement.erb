@@ -1,0 +1,86 @@
+<style>
+.btn {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.btn:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+</style>  
+
+<div class="container jumbotron" style="margin-top: 10%">
+    <% i=0 %>
+    <% 10.times do %> 
+    <% if filter_n_day(i,@measurements_arr).empty? %>
+    <div class="container well">
+      <% if i != 0 %>
+        <h5><strong><%=i%> days ago: No Data Entry </strong></h5>
+      <% else %>
+        <h5><strong>Today: No Data Entry </strong></h5>
+      <% end %>
+    <% else %>
+    <div class="container well">
+    <% end %>    
+      <% filter_n_day(i,@measurements_arr).each do |measurement|%>
+        <div class="panel" style="margin-top:1%">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-8">
+                <h4>Date: <%= utc_to_local(measurement.created_at) %></h4>
+              </div>
+              <div class="col-md-4">
+                <a href="/user/<%=@user.id%>/measurements/<%= measurement.id%>/update" aria- label="Left Align" class="btn btn-info"><i class="fa fa-pencil-square-o">edit</i>
+                </a>
+              </div>  
+            </div>
+          </div>
+          <div style ="padding: 0 0 2% 10%"> 
+            <div class="row">
+              <i class="fa fa-cubes"></i> Blood Sugar Level: <%= measurement.blood_sugar_level %>
+            </div>
+            <div class="row">
+              <i class="fa fa-heartbeat"></i> Systolic Pressure: <%= measurement.systolic_pressure %>
+            </div>
+            <div class="row">
+              <i class="fa fa-heartbeat"></i> Diastolic Pressure: <%= measurement.diastolic_pressure %>
+            </div>
+            <div class="row">
+              <i class="fa fa-balance-scale"></i> Weight: <%= measurement.weight %>
+            </div>
+            <div class="row">
+              <i class="fa fa-clock-o"></i> Measurement Time: <%= measurement.measurement_time.to_s[0..18] %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+     <%  i += 1 %>
+    </div>
+  <% end %>
+</div>
+  
+

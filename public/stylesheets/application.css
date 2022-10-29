@@ -1,0 +1,69 @@
+body {
+    background-image: url("../img/portfolio/texture.jpg");
+    background-color: #CFD8D9;
+    color: #AC8364;
+}
+
+#landing-page-img {
+  width:100%;
+  height:100%;
+  margin:0;
+}
+.ui-autocomplete {
+  background-color: white;
+  width: 300px;
+  border-style: groove;
+  border-radius: 2%;
+  list-style-type: none;
+  padding: 5px 10px;
+}
+.ui-menu-item:hover {
+  background-color: #04A0E2;
+  color: #F2F2F2;
+  padding: 2px;
+  border-radius: 3%;
+}
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+
+canvas {
+  background-color: white; 
+  width: 100%;
+  height: auto;
+}
+
+#bs-example-navbar-collapse-1{
+  padding-bottom: 0px;
+}
+
+.navbar-header {
+  position:absolute;
+  top:0;
+}
+
+#bs-example-navbar-collapse-1 {
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+#navbar-container {
+  position: relative;
+}
+
+.navbar {
+  opacity: 0.6;
+}
+
+.navbar.scrolled {
+  opacity: 1;
+    -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 04s ease-in-out;
+  -ms-transition: opacity 0.4s ease-in-out;
+  -o-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+
+}
