@@ -5,7 +5,13 @@ require ::File.expand_path('../config/environment', __FILE__)
 
 Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
-
+# Rake::Task["db:migrate"].enhance do
+#   if ActiveRecord::Base.schema_format == :sqlite3
+task "db:schema:load" do
+  touch 'db/schema.rb'
+end
+#   end
+# end
 # NOTE: Assumes SQLite3 DB
 desc "create the database"
 task "db:create" do

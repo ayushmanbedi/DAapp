@@ -19,7 +19,7 @@ gem 'bcrypt'
 group :development, :test do
   gem 'pry'
   gem 'shotgun'
-  gem 'sqlite3'
+  gem 'sqlite3', "~>1.5"
 end
 
 
@@ -27,3 +27,7 @@ group :production do
   gem 'pg'
 end
 
+
+gem "matrix", "~> 0.4.2"
+gem "rails", "~> 5.0"
+gem 'sqlite3', "~>1.5"
