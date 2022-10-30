@@ -1,9 +1,11 @@
-# FreshPulse
+# Sweet
 
-Built by @edumonteiro, @fantasticjimmy, @prateeksan
+Built by @ayushmanbedi, @
 
->FreshPulse is an app built to make life a little easier for diabetes patients. It offers an interactive and robust way to record meals, medications and medical readings. Furthermore, it uses this data to monitor BMI and nutritional intakes, make dietary recommendations and generate reports which may be equally useful for the patient and his or her doctor. 
-
+>Sweet is a DAapp (Diabetes Analyst Application) built to make life a little easier for diabetes patients. It offers an interactive and robust way to record meals, medications and medical readings. Furthermore, it uses this data to monitor BMI and nutritional intakes, make dietary recommendations and generate reports which may be equally useful for the patient and his or her doctor.
+#
+>As this is project is in development phase, We still tried to demonstrate the working using a test user.
+>User functionality is not yet completed as there were some issue with connecting the SQLite3 Schema with rack. 
 ## Tech-Stack
 
 1. __Server-Side__: _Ruby -v 2.2.3_, Sinatra (Sinatra-Contrib, Sintra-ActiveRecord, Sintra-Partial), Rake, ActiveSupport, Faker, Prawn, Puma, Tux, Google Charts.
