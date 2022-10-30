@@ -1,6 +1,6 @@
 # Sweet
 
-Built by @ayushmanbedi, @
+Built by Ayushman Bedi @ayushmanbedi, Prakhar Tandon @psoftwaredeveloper-87
 
 >Sweet is a DAapp (Diabetes Analyst Application) built to make life a little easier for diabetes patients. It offers an interactive and robust way to record meals, medications and medical readings. Furthermore, it uses this data to monitor BMI and nutritional intakes, make dietary recommendations and generate reports which may be equally useful for the patient and his or her doctor.
 #
